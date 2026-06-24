@@ -288,6 +288,8 @@ section{position:relative}
 /* ---------- CTA final + form ---------- */
 .final{background:radial-gradient(120% 100% at 15% 0%,#13271D,var(--ink) 60%);color:#fff;padding:96px 0}
 .final .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.final .final-center{max-width:660px;margin:0 auto;text-align:center}
+.final .final-center .sub{margin:18px auto 0}
 .final h2{font-size:clamp(1.8rem,3.4vw,2.7rem)}
 .final .sub{color:rgba(255,255,255,.8);font-size:1.12rem;margin-top:18px;max-width:40ch}
 .final .wa-big{margin-top:30px}

@@ -76,22 +76,4 @@
   }, {threshold:0.12, rootMargin:"0px 0px -40px 0px"});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
 
-  // Form → WhatsApp (com feedback)
-  var form = document.getElementById("orcForm");
-  if(form){
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      var f = form;
-      var msg = "*Orçamento American Filter*\n"
-        + "Nome: " + (f.nome.value||"-") + "\n"
-        + "WhatsApp: " + (f.zap.value||"-") + "\n"
-        + "Cidade/UF: " + (f.cidade.value||"-") + "\n"
-        + "Imóvel: " + (f.tipo.value||"-") + "\n"
-        + "Água: " + (f.agua.value||"-")
-        + (f.msg.value ? "\nMensagem: " + f.msg.value : "");
-      var status = document.getElementById("formStatus");
-      if(status){ status.hidden = false; }
-      window.open(waLink(msg), "_blank", "noopener");
-    });
-  }
 })();
