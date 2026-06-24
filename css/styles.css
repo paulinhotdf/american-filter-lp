@@ -132,6 +132,26 @@ section{position:relative}
 .dark h2,.dark h3{color:#fff}
 .soft{background:var(--paper-2)}
 
+/* ---------- Empresas que confiam (marquee) ---------- */
+.clients{background:var(--paper);padding:50px 0 56px;overflow:hidden;border-bottom:1px solid var(--line)}
+.clients-title{text-align:center;font-family:var(--font);font-size:12.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:30px}
+.marquee{position:relative;width:100%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:cli-scroll 55s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.cli{flex:none;display:flex;align-items:center;padding:0 34px;white-space:nowrap;
+  font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;
+  color:#9aa6a0;transition:color .3s var(--ease)}
+.cli:hover{color:var(--green-deep)}
+@keyframes cli-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:600px){.cli{font-size:1.2rem;padding:0 24px}.clients{padding:40px 0 44px}}
+@media(prefers-reduced-motion:reduce){
+  .marquee{-webkit-mask-image:none;mask-image:none}
+  .marquee-track{animation:none;flex-wrap:wrap;justify-content:center;gap:10px 0;width:100%}
+}
+
 /* ---------- VSL ---------- */
 .vsl-sec{background:linear-gradient(180deg,var(--ink) 0%,#0C1C14 100%);color:#fff;padding:84px 0}
 .vsl-sec .sec-head{text-align:center;margin-inline:auto}
