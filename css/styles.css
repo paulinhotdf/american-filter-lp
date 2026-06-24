@@ -106,7 +106,7 @@ p{margin:0}
 .hero .selos span{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:rgba(255,255,255,.9)}
 .hero .selos svg{width:17px;height:17px;color:var(--green-bright);flex:none}
 .hero-media{position:relative}
-.hero-media img{width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);aspect-ratio:1049/1400;object-fit:cover;max-height:560px}
+.hero-media img{width:auto;max-width:100%;max-height:580px;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);object-fit:contain;display:block;margin-inline:auto}
 .hero-badge{
   position:absolute;left:-18px;bottom:26px;background:#fff;color:var(--text);
   border-radius:16px;padding:16px 20px;box-shadow:var(--shadow);
