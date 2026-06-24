@@ -145,6 +145,10 @@ section{position:relative}
   font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;
   color:#9aa6a0;transition:color .3s var(--ease)}
 .cli:hover{color:var(--green-deep)}
+.cli-logo img{height:30px;width:auto;max-width:160px;object-fit:contain;display:block;
+  filter:grayscale(1);opacity:.6;transition:filter .3s var(--ease),opacity .3s var(--ease)}
+.cli-logo:hover img{filter:none;opacity:1}
+@media(max-width:600px){.cli-logo img{height:24px;max-width:130px}}
 @keyframes cli-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:600px){.cli{font-size:1.2rem;padding:0 24px}.clients{padding:40px 0 44px}}
 @media(prefers-reduced-motion:reduce){
