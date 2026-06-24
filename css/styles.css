@@ -157,7 +157,7 @@ section{position:relative}
 .jstep .n{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(31,255,128,.12);
   border:1px solid rgba(31,255,128,.3);color:var(--green-bright);font-family:var(--display);
   font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
-.jstep h4{font-size:1.12rem;margin-bottom:5px}
+.jstep h3{font-size:1.12rem;margin-bottom:5px}
 .jstep p{color:rgba(255,255,255,.72);font-size:.98rem}
 .journey-media img{border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);aspect-ratio:4/3;object-fit:cover;width:100%}
 .pullquote{margin-top:34px;padding:22px 26px;border-left:3px solid var(--green-bright);
@@ -173,7 +173,7 @@ section{position:relative}
 .benef:hover .ph img{transform:scale(1.06)}
 .benef .bd{padding:20px 20px 24px}
 .benef .ico{font-size:1.5rem;margin-bottom:6px;display:block}
-.benef h4{font-size:1.08rem;margin-bottom:6px}
+.benef h3{font-size:1.08rem;margin-bottom:6px}
 .benef p{color:var(--text-2);font-size:.96rem}
 
 /* ---------- Como funciona ---------- */
@@ -182,7 +182,7 @@ section{position:relative}
   position:relative;box-shadow:var(--shadow-sm)}
 .how .card::before{counter-increment:step;content:"0" counter(step);font-family:var(--display);font-weight:800;
   font-size:1.5rem;color:var(--green-bright);-webkit-text-stroke:1px var(--green-deep);display:block;margin-bottom:14px}
-.how .card h4{font-size:1.04rem;margin-bottom:8px}
+.how .card h3{font-size:1.04rem;margin-bottom:8px}
 .how .card p{color:var(--text-2);font-size:.93rem}
 
 /* ---------- Diferenciais bento ---------- */
@@ -325,6 +325,15 @@ section{position:relative}
 /* ---------- Reveal ---------- */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
+
+/* ---------- Acessibilidade ---------- */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid var(--green-deep);outline-offset:2px;border-radius:6px}
+.form-status{margin-top:12px;text-align:center;font-size:.92rem;font-weight:600;color:var(--green-deep)}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
 
 /* ---------- Responsivo ---------- */
 @media(max-width:980px){

@@ -14,6 +14,11 @@
     a.setAttribute("rel","noopener");
   });
 
+  // Acessibilidade: esconde SVGs decorativos de leitores de tela
+  document.querySelectorAll("svg").forEach(function(s){
+    if(!s.getAttribute("aria-label") && !s.getAttribute("role")) s.setAttribute("aria-hidden","true");
+  });
+
   // Header scrolled
   var header = document.getElementById("header");
   function onScroll(){
@@ -26,8 +31,15 @@
   // Menu mobile
   var toggle = document.getElementById("menuToggle"), nav = document.getElementById("nav");
   if(toggle){
-    toggle.addEventListener("click", function(){ nav.classList.toggle("open"); });
-    nav.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ nav.classList.remove("open"); }); });
+    toggle.setAttribute("aria-expanded","false");
+    toggle.setAttribute("aria-controls","nav");
+    toggle.addEventListener("click", function(){
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    nav.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ nav.classList.remove("open"); toggle.setAttribute("aria-expanded","false"); });
+    });
   }
 
   // Player VSL
@@ -41,17 +53,20 @@
     video.addEventListener("pause", function(){ if(video.currentTime < 0.2) player.classList.remove("playing"); });
   }
 
-  // FAQ accordion
-  document.querySelectorAll(".faq-q").forEach(function(btn){
+  // FAQ accordion (com ARIA)
+  document.querySelectorAll(".faq-q").forEach(function(btn, i){
+    var item = btn.closest(".faq-item"), ans = item.querySelector(".faq-a");
+    var id = "faq-a-" + i; ans.id = id;
+    btn.setAttribute("aria-expanded","false");
+    btn.setAttribute("aria-controls", id);
     btn.addEventListener("click", function(){
-      var item = btn.closest(".faq-item"), ans = item.querySelector(".faq-a");
       var isOpen = item.classList.contains("open");
-      // fecha os outros
-      document.querySelectorAll(".faq-item.open").forEach(function(i){
-        if(i!==item){ i.classList.remove("open"); i.querySelector(".faq-a").style.maxHeight = null; }
+      document.querySelectorAll(".faq-item.open").forEach(function(o){
+        if(o!==item){ o.classList.remove("open"); o.querySelector(".faq-a").style.maxHeight = null;
+          o.querySelector(".faq-q").setAttribute("aria-expanded","false"); }
       });
-      if(isOpen){ item.classList.remove("open"); ans.style.maxHeight = null; }
-      else { item.classList.add("open"); ans.style.maxHeight = ans.scrollHeight + "px"; }
+      if(isOpen){ item.classList.remove("open"); ans.style.maxHeight = null; btn.setAttribute("aria-expanded","false"); }
+      else { item.classList.add("open"); ans.style.maxHeight = ans.scrollHeight + "px"; btn.setAttribute("aria-expanded","true"); }
     });
   });
 
@@ -61,7 +76,7 @@
   }, {threshold:0.12, rootMargin:"0px 0px -40px 0px"});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
 
-  // Form → WhatsApp
+  // Form → WhatsApp (com feedback)
   var form = document.getElementById("orcForm");
   if(form){
     form.addEventListener("submit", function(e){
@@ -74,6 +89,8 @@
         + "Imóvel: " + (f.tipo.value||"-") + "\n"
         + "Água: " + (f.agua.value||"-")
         + (f.msg.value ? "\nMensagem: " + f.msg.value : "");
+      var status = document.getElementById("formStatus");
+      if(status){ status.hidden = false; }
       window.open(waLink(msg), "_blank", "noopener");
     });
   }
